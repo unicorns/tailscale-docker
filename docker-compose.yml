@@ -1,0 +1,23 @@
+services:
+    dev:
+        image: alpine
+        # Keep the image open
+        entrypoint: tail -f /dev/null
+    tailscale:
+        # derived from https://github.com/tailscale/tailscale/issues/504#issuecomment-781043926
+        image: tailscale:${TAILSCALE_TAG}
+        # Build first using `docker build -t tailscale:<TAILSCALE_TAG> <TAILSCALE_PATH>`:
+        # Issue here: https://github.com/docker/compose/issues/8309
+        build: ${TAILSCALE_PATH}
+        command: tailscaled
+        cap_add:
+            - NET_ADMIN
+            # Not needed in Ubuntu 20.04, might be needed for other host OS
+            # - SYS_MODULE             
+        network_mode: 'service:dev'
+        volumes:
+            - /dev/net/tun:/dev/net/tun
+            - tailscale_data:/var/lib/tailscale
+volumes:
+    tailscale_data:
+
