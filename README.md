@@ -7,10 +7,10 @@
 (source .env; docker build -t tailscale:${TAILSCALE_TAG} "${TAILSCALE_PATH}")
 # Start services
 docker-compose up
-# Start tailscale service
-docker-compose run tailscale tailscale up
+# Start tailscale service and log in
+docker-compose exec tailscale tailscale up
 # Now the tailscale service is accessible in the tailscale container and the dev container
-docker-compose run dev ping <another_host_on_tailscale>
+docker-compose exec dev ping <another_host_on_tailscale>
 ```
 
 ## Configuration
