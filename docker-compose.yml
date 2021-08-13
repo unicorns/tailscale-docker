@@ -1,8 +1,8 @@
 services:
     dev:
-        image: alpine
+        image: pygmy/alpine-tini
         # Keep the image open
-        entrypoint: tail -f /dev/null
+        command: tail -f /dev/null
     tailscale:
         # derived from https://github.com/tailscale/tailscale/issues/504#issuecomment-781043926
         image: tailscale:${TAILSCALE_TAG}
