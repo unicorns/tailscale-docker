@@ -1,5 +1,9 @@
 # Tailscale in Docker
 
+> [!IMPORTANT]
+> Tailscale now has an [official Docker image](https://hub.docker.com/r/tailscale/tailscale).
+> This repository is no longer needed and is archived.
+
 ## Getting Started
 
 ```bash
